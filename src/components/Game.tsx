@@ -182,6 +182,7 @@ const OneAway = styled.div`
   font-size: 24px;
   padding: 20px;
   border-radius: 9px;
+  z-index: 10;
 `;
 
 const BetterLuck = styled.div`
