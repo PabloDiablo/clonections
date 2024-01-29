@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "lib": ["ES2022", "DOM"],
+    "moduleResolution": "node",
+    "removeComments": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "target": "ES2022",
+    "jsxFactory": "h",
+    "jsx": "react"
+  },
+  "include": ["src/**/*"]
+}

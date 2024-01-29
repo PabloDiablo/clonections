@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Clonections</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      @keyframes shake {
+        0%,
+        100% {
+          transform: translatex(0);
+        }
+        25% {
+          transform: translateX(-5px);
+        }
+        75% {
+          transform: translateX(5px);
+        }
+      }
+
+      @keyframes flyOut {
+        0% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      h1 a {
+        text-decoration: none;
+        color: black;
+      }
+
+      h1 a:visited {
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1><a href="/">Clonections!</a></h1>
+    <div id="game"></div>
+    <script src="/scripts/index.js"></script>
+  </body>
+</html>

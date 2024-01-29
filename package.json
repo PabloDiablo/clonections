@@ -1,0 +1,35 @@
+{
+  "name": "connections",
+  "version": "1.0.0",
+  "description": "Connections",
+  "main": "serverless.ts",
+  "scripts": {
+    "test": "jest",
+    "start": "npm run build && http-server",
+    "build": "node build-web.mjs"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "@typescript-eslint/parser": "^6.4.1",
+    "esbuild": "^0.17.19",
+    "esbuild-copy-static-files": "^0.1.0",
+    "eslint": "^8.47.0",
+    "eslint-config-preact": "^1.3.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-react": "^7.33.2",
+    "http-server": "^14.1.1",
+    "prettier": "^2.0.2",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "preact": "^10.19.3",
+    "react": "npm:@preact/compat@^17.1.2",
+    "react-dom": "npm:@preact/compat@^17.1.2",
+    "styled-components": "^6.1.8"
+  }
+}
