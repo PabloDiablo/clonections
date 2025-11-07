@@ -8,3 +8,5 @@ await esbuild.build({
   outdir: './public/scripts',
   jsxFactory: 'h',
 });
+
+console.log('Build completed');
