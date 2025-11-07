@@ -1,6 +1,7 @@
 import { h } from 'preact';
 import { useState, useEffect } from 'preact/hooks';
 import styled, { css } from 'styled-components';
+import { GameData, transformV2ToV1 } from '../helpers/transformer';
 
 const getData = async (gameId: string) => {
   if (!gameId) {
@@ -123,6 +124,14 @@ const Cell = styled.div<{ isSelected: boolean; isInvalid: boolean; isCorrect: bo
     height: 80px;
   }
 
+  ${({ charLength }) =>
+    charLength > 7 &&
+    css`
+      @media (max-width: 550px) {
+        font-size: 11.5px;
+      }
+    `}
+
   ${({ isInvalid, isSelected }) =>
     isInvalid &&
     isSelected &&
@@ -191,7 +200,6 @@ const BetterLuck = styled.div`
   font-size: 18px;
 `;
 
-type RemoteGroup = Record<string, { level: number; members: string[] }>;
 type Answer = { connection: string; level: number; members: string[] };
 
 type Props = { gameId: string };
@@ -214,13 +222,17 @@ const Game = ({ gameId }: Props) => {
       setIsLoading(true);
 
       try {
-        const remoteData = await getData(gameId);
+        const remoteData = (await getData(gameId)) as GameData;
 
         if (remoteData) {
-          setGroups(remoteData.startingGroups);
-          setRemainingWords(remoteData.startingGroups.flat());
+          const isV2 = 'status' in remoteData;
+
+          const data = isV2 ? transformV2ToV1(remoteData) : remoteData;
+
+          setGroups(data.startingGroups);
+          setRemainingWords(data.startingGroups.flat());
           setAnswers(
-            Object.entries(remoteData.groups as RemoteGroup).map(([connection, { level, members }]) => ({
+            Object.entries(data.groups).map(([connection, { level, members }]) => ({
               connection,
               level,
               members,
@@ -340,6 +352,7 @@ const Game = ({ gameId }: Props) => {
                     isInvalid={isInvalid}
                     isCorrect={isCorrect}
                     onClick={() => changeSelectedCell(cell)}
+                    charLength={cell.length}
                   >
                     {cell}
                   </Cell>
